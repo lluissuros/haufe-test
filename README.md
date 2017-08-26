@@ -1,6 +1,6 @@
 # React Test exercise for Haufe
 
-## Starting point is a happy copy of https://github.com/coryhouse/pluralsight-redux-starter
+##### Starting point is a happy copy of https://github.com/coryhouse/pluralsight-redux-starter
 
 ## Get Started
 1. **Install [Node 6](https://nodejs.org)**.
