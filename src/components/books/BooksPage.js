@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 import * as bookActions from '../../actions/bookActions';
+import BookList from './BookList';
 
 class BooksPage extends React.Component {
   constructor(props, context) {
@@ -14,10 +15,12 @@ class BooksPage extends React.Component {
   }
 
   render() {
+    const {books} = this.props;
+
     return (
       <div>
-        <h1>Books</h1>
-        {this.props.books.map(this.bookRow)}
+        <h1>Books that I'm reading</h1>
+        <BookList books={books}/>
       </div>
     );
   }
