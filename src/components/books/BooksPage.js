@@ -7,26 +7,10 @@ import * as bookActions from '../../actions/bookActions';
 class BooksPage extends React.Component {
   constructor(props, context) {
     super(props, context);
-    this.state = {
-      book: {title: ''}
-    };
-
-    this.onClickSave = this.onClickSave.bind(this);
-    this.onTitleChange = this.onTitleChange.bind(this);
   }
 
   bookRow(book, index) {
     return <div key={index}>{book.title}</div>;
-  }
-
-  onClickSave() {
-    this.props.actions.createBook(this.state.book);
-  }
-
-  onTitleChange(event) {
-    const book = this.state.book;
-    book.title = event.target.value;
-    this.setState({book: book});
   }
 
   render() {
@@ -34,13 +18,6 @@ class BooksPage extends React.Component {
       <div>
         <h1>Books</h1>
         {this.props.books.map(this.bookRow)}
-        <input type="text"
-               onChange={this.onTitleChange}
-               value={this.state.book.title}/>
-        <input type="submit"
-               value="Save"
-               className="btn btn-primary"
-               onClick={this.onClickSave}/>
       </div>
     );
   }

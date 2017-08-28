@@ -9,11 +9,8 @@ import initialState from './initialState';
 export default function books(state = initialState.books, action) {
   switch (action.type) {
 
-    case types.CREATE_BOOK:
-      return [
-        ...state,
-        Object.assign({}, action.book)
-      ];
+    case types.LOAD_BOOKS_SUCCESS:
+      return action.books;
 
     default:
       return state;
