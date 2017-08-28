@@ -20,7 +20,7 @@ class BooksPage extends React.Component {
   }
 
   onClickSave() {
-    this.props.dispatch(bookActions.createBook(this.state.book));
+    this.props.actions.createBook(this.state.book);
   }
 
   onTitleChange(event) {
@@ -47,8 +47,7 @@ class BooksPage extends React.Component {
 }
 
 BooksPage.propTypes = {
-  // actions: PropTypes.object.isRequired,
-  dispatch: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired,
   books: PropTypes.array.isRequired
 };
 
@@ -58,4 +57,11 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(BooksPage);
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(bookActions, dispatch)
+  };
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(BooksPage);

@@ -8,8 +8,6 @@ import initialState from './initialState';
 // and update values on the copy.
 export default function books(state = initialState.books, action) {
   switch (action.type) {
-    case types.LOAD_BOOK:
-      return action.books;
 
     case types.CREATE_BOOK:
       return [
