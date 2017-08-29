@@ -4,11 +4,14 @@ import App from './components/App';
 import HomePage from './components/home/HomePage';
 import AboutPage from './components/about/AboutPage';
 import BooksPage from './components/books/BooksPage';
+import ManageBookPage from './components/books/ManageBookPage';
 
 export default (
 	<Route path="/" component={App}>
 		<IndexRoute component={HomePage} />
 		<Route path="about" component={AboutPage} />
     <Route path="books" component={BooksPage}/>
+    <Route path="book" component={ManageBookPage}/>
+    <Route path="book/:id" component={ManageBookPage}/>
 	</Route>
 );
