@@ -10,12 +10,19 @@ class ManageBookPage extends React.Component {
     super(props, context);
 
     this.state = {
-      book: Object.assign({}, this.props.books),
+      book: Object.assign({}, this.props.book),
       errors: {}
     };
 
     this.updateBookState = this.updateBookState.bind(this);
     this.saveBook = this.saveBook.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.book.id != nextProps.book.id) {
+      // Necessary to populate form when existing book is loaded directly.
+      this.setState({book: Object.assign({}, nextProps.book)});
+    }
   }
 
   updateBookState(event) {
@@ -44,7 +51,7 @@ class ManageBookPage extends React.Component {
 }
 
 ManageBookPage.propTypes = {
-  books: PropTypes.object.isRequired,
+  book: PropTypes.object.isRequired,
   ratings: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired,
 };
@@ -54,16 +61,28 @@ ManageBookPage.contextTypes = {
   router: PropTypes.object
 };
 
+function getCourseById(books, bookId) {
+  const book = books.filter(book => book.id === bookId);
+  return book.length ? book[0] : null;
+}
+
 function mapStateToProps(state, ownProps) {
-  const books = {id:'', title:'', author:'', buyHref:'', description:''};
+  const bookId = ownProps.params.id; //from the path book/:id
+  const emptyBook = {id:'', title:'', author:'', buyHref:'', description:''};
+
+  const book = bookId && state.books.length > 0
+    ? getCourseById(state.books, bookId)
+    : emptyBook;
+
   const ratingsFormattedForDropdown = state.ratings.map((rating) => {
     return {
       value: rating.id,
       text: rating.text,
     };
   });
+
   return {
-    books: books,
+    book: book,
     ratings: ratingsFormattedForDropdown,
   };
 }
