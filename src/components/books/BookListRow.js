@@ -7,6 +7,7 @@ const BookListRow = ({book}) => {
       <td><a href={book.buyHref} target="_blank">Buy</a></td>
       <td><Link to={'/book/' + book.id}>{book.title}</Link></td>
       <td>{book.author}</td>
+      <td>{book.ratingId}</td>
       <td>{book.description}</td>
     </tr>
   );

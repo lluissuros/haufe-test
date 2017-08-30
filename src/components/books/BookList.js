@@ -9,6 +9,7 @@ const BookList = ({books}) => {
         <th>&nbsp;</th>
         <th>Title</th>
         <th>Author</th>
+        <th>Rating</th>
         <th>Description</th>
       </tr>
       </thead>

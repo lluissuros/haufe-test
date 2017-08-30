@@ -55,7 +55,7 @@ ManageBookPage.contextTypes = {
 };
 
 function mapStateToProps(state, ownProps) {
-  const books = {id:'', title:'test', author:'', buyHref:'', description:''};
+  const books = {id:'', title:'', author:'', buyHref:'', description:''};
   const ratingsFormattedForDropdown = state.ratings.map((rating) => {
     return {
       value: rating.id,
