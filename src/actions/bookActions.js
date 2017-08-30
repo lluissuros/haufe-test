@@ -1,5 +1,5 @@
 import * as types from './actionTypes';
-import bookApi from '../api/mockBookApi';
+import BookApi from '../api/mockBookApi';
 
 // I am using action creators here.
 
@@ -7,13 +7,30 @@ export function loadBooksSuccess(books) {
   return {type: types.LOAD_BOOKS_SUCCESS, books};
 }
 
+export function createBookSuccess(book) {
+  return {type: types.CREATE_BOOK_SUCCESS, book};
+}
+
+export function updateBookSuccess(book) {
+  return {type: types.UPDATE_BOOK_SUCCESS, book};
+}
+
 export function loadBooks() {
   return function(dispatch) {
     // TODO: import real api instead of mock.
-    return bookApi.getAllBooks().then(books => {
+    return BookApi.getAllBooks().then(books => {
       dispatch(loadBooksSuccess(books));
     }).catch(error => {
-      // TODO: nice handling of errors
+      throw(error);
+    });
+  };
+}
+
+export function saveBook(book) {
+  return function (dispatch, getState) {
+    return BookApi.saveBook(book).then(book => {
+      book.id ? dispatch(updateBookSuccess(book)) : dispatch(createBookSuccess(book));
+    }).catch(error => {
       throw(error);
     });
   };

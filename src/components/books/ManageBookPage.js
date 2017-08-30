@@ -15,6 +15,7 @@ class ManageBookPage extends React.Component {
     };
 
     this.updateBookState = this.updateBookState.bind(this);
+    this.saveBook = this.saveBook.bind(this);
   }
 
   updateBookState(event) {
@@ -24,12 +25,18 @@ class ManageBookPage extends React.Component {
     return this.setState({book: book});
   }
 
+  saveBook(event) {
+    event.preventDefault();
+    this.props.actions.saveBook(this.state.book);
+  }
+
   render() {
     return (
       <BookForm
         allRatings={this.props.ratings}
         onChange={this.updateBookState}
         book={this.state.book}
+        onSave={this.saveBook}
         errors={this.state.errors}/>
     );
   }
@@ -38,6 +45,7 @@ class ManageBookPage extends React.Component {
 ManageBookPage.propTypes = {
   books: PropTypes.object.isRequired,
   ratings: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired,
 };
 
 
