@@ -28,6 +28,7 @@ class ManageBookPage extends React.Component {
   saveBook(event) {
     event.preventDefault();
     this.props.actions.saveBook(this.state.book);
+    this.context.router.push('/books');
   }
 
   render() {
@@ -48,6 +49,10 @@ ManageBookPage.propTypes = {
   actions: PropTypes.object.isRequired,
 };
 
+//Pull in the React Router context so router is available on this.context.router.
+ManageBookPage.contextTypes = {
+  router: PropTypes.object
+};
 
 function mapStateToProps(state, ownProps) {
   const books = {id:'', title:'test', author:'', buyHref:'', description:''};
