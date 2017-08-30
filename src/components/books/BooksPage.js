@@ -8,10 +8,12 @@ import BookList from './BookList';
 class BooksPage extends React.Component {
   constructor(props, context) {
     super(props, context);
+
+    this.redirectToAddBookPage = this.redirectToAddBookPage.bind(this);
   }
 
-  bookRow(book, index) {
-    return <div key={index}>{book.title}</div>;
+  redirectToAddBookPage() {
+    browserHistory.push('/book');
   }
 
   render() {
@@ -20,6 +22,11 @@ class BooksPage extends React.Component {
     return (
       <div>
         <h1>Books that I'm reading</h1>
+        <input type="submit"
+               value="Add Book"
+               className="btn btn-primary"
+               onClick={this.redirectToAddBookPage}/>
+
         <BookList books={books}/>
       </div>
     );
