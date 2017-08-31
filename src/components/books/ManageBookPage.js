@@ -11,7 +11,8 @@ class ManageBookPage extends React.Component {
 
     this.state = {
       book: Object.assign({}, this.props.book),
-      errors: {}
+      errors: {},
+      saving: false,
     };
 
     this.updateBookState = this.updateBookState.bind(this);

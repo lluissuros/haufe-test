@@ -1,6 +1,6 @@
 import * as types from './actionTypes';
 import BookApi from '../api/mockBookApi';
-import {beginAjaxCall} from './ajaxStatusActions';
+import {beginAjaxCall, ajaxCallError} from './ajaxStatusActions';
 
 // I am using action creators here.
 
@@ -23,6 +23,7 @@ export function loadBooks() {
     return BookApi.getAllBooks().then(books => {
       dispatch(loadBooksSuccess(books));
     }).catch(error => {
+      dispatch(ajaxCallError());
       throw(error);
     });
   };
@@ -34,6 +35,7 @@ export function saveBook(book) {
     return BookApi.saveBook(book).then(book => {
       book.id ? dispatch(updateBookSuccess(book)) : dispatch(createBookSuccess(book));
     }).catch(error => {
+      dispatch(ajaxCallError());
       throw(error);
     });
   };
