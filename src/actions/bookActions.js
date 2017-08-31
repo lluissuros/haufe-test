@@ -20,23 +20,27 @@ export function loadBooks() {
   return function(dispatch) {
     dispatch(beginAjaxCall());
     // TODO: import real api instead of mock.
-    return BookApi.getAllBooks().then(books => {
-      dispatch(loadBooksSuccess(books));
-    }).catch(error => {
-      dispatch(ajaxCallError());
-      throw(error);
-    });
+    return BookApi.getAllBooks()
+      .then(books => dispatch(loadBooksSuccess(books)))
+      .catch(error => {
+        dispatch(ajaxCallError());
+        throw(error);
+      });
   };
 }
 
 export function saveBook(book) {
   return function (dispatch, getState) {
     dispatch(beginAjaxCall());
-    return BookApi.saveBook(book).then(book => {
-      book.id ? dispatch(updateBookSuccess(book)) : dispatch(createBookSuccess(book));
-    }).catch(error => {
-      dispatch(ajaxCallError());
-      throw(error);
-    });
+    return BookApi.saveBook(book)
+      .then(book => {
+        book.id
+          ? dispatch(updateBookSuccess(book))
+          : dispatch(createBookSuccess(book));
+      })
+      .catch(error => {
+        dispatch(ajaxCallError());
+        throw(error);
+      });
   };
 }
