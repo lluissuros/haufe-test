@@ -35,7 +35,19 @@ class ManageBookPage extends React.Component {
 
   saveBook(event) {
     event.preventDefault();
-    this.props.actions.saveBook(this.state.book);
+    this.setState({ saving: true });
+    this.props.actions.saveBook(this.state.book)
+      .then(() => this.redirect())
+      .catch(error => {
+        toastr.error(error);
+        this.setState({ saving: false });
+      });
+
+  }
+
+  redirect() {
+    this.setState({ saving: false });
+    toastr.success('Book saved');
     this.context.router.push('/books');
   }
 
@@ -46,7 +58,8 @@ class ManageBookPage extends React.Component {
         onChange={this.updateBookState}
         book={this.state.book}
         onSave={this.saveBook}
-        errors={this.state.errors}/>
+        errors={this.state.errors}
+        saving={this.state.saving}/>
     );
   }
 }
@@ -62,7 +75,7 @@ ManageBookPage.contextTypes = {
   router: PropTypes.object
 };
 
-function getCourseById(books, bookId) {
+function getBookById(books, bookId) {
   const book = books.filter(book => book.id === bookId);
   return book.length ? book[0] : null;
 }
@@ -72,7 +85,7 @@ function mapStateToProps(state, ownProps) {
   const emptyBook = {id:'', title:'', author:'', buyHref:'', description:''};
 
   const book = bookId && state.books.length > 0
-    ? getCourseById(state.books, bookId)
+    ? getBookById(state.books, bookId)
     : emptyBook;
 
   const ratingsFormattedForDropdown = state.ratings.map((rating) => {
