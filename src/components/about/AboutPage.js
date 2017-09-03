@@ -39,12 +39,12 @@ class AboutPage extends React.Component {
         <br/>
 
         <ul>
-            <li><h4>Did you develop this code by yourself?</h4></li>
+            <li><h4>Did you develop this code all by yourself?</h4></li>
             <p>Absolutely not! I'm standing on the shoulders of giants.</p>
             <p>
               What I did was to ask the React tech lead in my company about a nice course to
               get to know React + Redux, and he said came back recommending
-              <a href="https://app.pluralsight.com/player?course=react-redux-react-router-es6&author=cory-house&name=react-redux-react-router-es6-m11&clip=9&mode=live"> this course </a>
+              <a href="https://app.pluralsight.com/library/courses/react-redux-react-router-es6"> this course </a>
                in Pluralsight by Cory House: <strong> Building Applications with React and Redux in ES6</strong>.
             </p>
             <p>
