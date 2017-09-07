@@ -1,9 +1,8 @@
-// TODO: api url file with consts
-const booksUrl = 'http://127.0.0.1:5000/Books';
+import * as apiRoutes from './apiRoutes';
 
 class BookApi {
   static getAllBooks() {
-    return fetch(`${booksUrl}`)
+    return fetch(apiRoutes.GET_ALL_BOOKS)
       .then(response => response.json())
       .catch(error => {
         throw(error);
