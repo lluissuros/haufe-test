@@ -24,18 +24,17 @@ export function loadBooks() {
       .then(books => dispatch(loadBooksSuccess(books)))
       .catch(error => {
         dispatch(ajaxCallError());
-        // TODO: handle error in UI
         throw(error);
       });
   };
 }
 
-export function saveBook(book) {
+export function saveBook(bookToSave) {
   return function (dispatch, getState) {
     dispatch(beginAjaxCall());
-    return BookApi.saveBook(book)
+    return BookApi.saveBook(bookToSave)
       .then(book => {
-        book.id
+        bookToSave.id
           ? dispatch(updateBookSuccess(book))
           : dispatch(createBookSuccess(book));
       })

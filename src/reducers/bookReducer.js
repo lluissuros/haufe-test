@@ -24,7 +24,6 @@ export default function books(state = initialState.books, action) {
         Object.assign({}, action.book)
       ];
 
-
     default:
       return state;
   }
