@@ -1,5 +1,6 @@
 import * as types from './actionTypes';
-import BookApi from '../api/mockBookApi';
+//import BookApi from '../api/mockBookApi';
+import BookApi from '../api/bookApi';
 import {beginAjaxCall, ajaxCallError} from './ajaxStatusActions';
 
 // I am using action creators here.
@@ -19,11 +20,11 @@ export function updateBookSuccess(book) {
 export function loadBooks() {
   return function(dispatch) {
     dispatch(beginAjaxCall());
-    // TODO: import real api instead of mock.
     return BookApi.getAllBooks()
       .then(books => dispatch(loadBooksSuccess(books)))
       .catch(error => {
         dispatch(ajaxCallError());
+        // TODO: handle error in UI
         throw(error);
       });
   };
