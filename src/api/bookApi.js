@@ -19,12 +19,24 @@ class BookApi {
     });
 
     return fetch(request)
-      .then(response => response.json());
+      .then(fetchStatusHandler)
+      .then(response => response.json())
+      .catch(error => {
+        throw(error);
+      });
     }
 
     static deleteBook(bookId) {
       //TODO
     }
+}
+
+function fetchStatusHandler(response) {
+  if (response.status === 200) {
+    return response;
+  } else {
+    throw new Error(response.statusText);
+  }
 }
 
 export default BookApi;
