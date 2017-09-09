@@ -1,6 +1,6 @@
 import * as types from './actionTypes';
-import RatingApi from '../api/mockRatingApi';
-import {beginAjaxCall} from './ajaxStatusActions';
+import RatingApi from '../api/ratingApi';
+import {beginAjaxCall, ajaxCallError} from './ajaxStatusActions';
 
 // I am using action creators here.
 
@@ -11,10 +11,10 @@ export function loadRatingsSuccess(ratings) {
 export function loadRatings() {
   return function(dispatch) {
     dispatch(beginAjaxCall());
-    // TODO: import real api instead of mock.
-    return RatingApi.getAllRatings().then(ratings => {
-      dispatch(loadRatingsSuccess(ratings));
-    }).catch(error => {
+    return RatingApi.getAllRatings()
+    .then(ratings => dispatch(loadRatingsSuccess(ratings)))
+    .catch(error => {
+      dispatch(ajaxCallError());
       throw(error);
     });
   };
