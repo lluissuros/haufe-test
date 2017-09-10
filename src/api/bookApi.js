@@ -27,8 +27,19 @@ class BookApi {
     }
 
     static deleteBook(bookId) {
-      //TODO
-    }
+      const request = new Request(`${apiRoutes.BOOKS}/${bookId}`, {
+        method: 'DELETE',
+        headers: new Headers({
+          'Content-Type': 'application/json'
+        }),
+      });
+
+      return fetch(request)
+        .then(fetchStatusHandler)
+        .catch(error => {
+          throw(error);
+        });
+      }
 }
 
 function fetchStatusHandler(response) {

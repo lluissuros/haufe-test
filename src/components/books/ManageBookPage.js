@@ -13,10 +13,12 @@ class ManageBookPage extends React.Component {
       book: Object.assign({}, this.props.book),
       errors: {},
       saving: false,
+      succesMessage: 'Book Saved',
     };
 
     this.updateBookState = this.updateBookState.bind(this);
     this.saveBook = this.saveBook.bind(this);
+    this.deleteBook = this.deleteBook.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -35,8 +37,19 @@ class ManageBookPage extends React.Component {
 
   saveBook(event) {
     event.preventDefault();
-    this.setState({ saving: true });
+    this.setState({ saving: true, succesMessage: 'Book Saved' });
     this.props.actions.saveBook(this.state.book)
+      .then(() => this.redirect())
+      .catch(error => {
+        toastr.error(error);
+        this.setState({ saving: false });
+      });
+  }
+
+  deleteBook(event) {
+    event.preventDefault();
+    this.setState({ saving: true, succesMessage: 'Book Removed' });
+    this.props.actions.deleteBook(this.state.book)
       .then(() => this.redirect())
       .catch(error => {
         toastr.error(error);
@@ -46,8 +59,9 @@ class ManageBookPage extends React.Component {
 
   redirect() {
     this.setState({ saving: false });
-    toastr.success('Book saved');
+    toastr.success(this.state.succesMessage);
     this.context.router.push('/books');
+    this.props.actions.loadBooks();
   }
 
   render() {
@@ -55,6 +69,7 @@ class ManageBookPage extends React.Component {
       <BookForm
         allRatings={this.props.ratings}
         onChange={this.updateBookState}
+        onDelete={this.deleteBook}
         book={this.state.book}
         onSave={this.saveBook}
         errors={this.state.errors}

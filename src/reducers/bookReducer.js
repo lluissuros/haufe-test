@@ -12,6 +12,9 @@ export default function books(state = initialState.books, action) {
     case types.LOAD_BOOKS_SUCCESS:
       return action.books;
 
+    case types.DELETE_BOOK_SUCCESS:
+      return state;
+
     case types.CREATE_BOOK_SUCCESS:
       return [
         ...state,

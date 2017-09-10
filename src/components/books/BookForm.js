@@ -2,7 +2,21 @@ import React, {PropTypes} from 'react';
 import TextInput from '../common/TextInput';
 import SelectInput from '../common/SelectInput';
 
-const BookForm = ({book, allRatings, onSave, onChange, saving, errors}) => {
+const BookForm = ({book, allRatings, onSave, onDelete, onChange, saving, errors}) => {
+  const showDeleteButton = (book) => {
+
+    const deleteButton = {
+      marginRight: 10,
+    };
+
+    return book.id
+      ? <div
+        className="btn btn-danger"
+        style={deleteButton}
+        onClick={onDelete}>Delete</div>
+      : null;
+  };
+
   return (
     <form>
       <h1>Manage Book</h1>
@@ -42,6 +56,8 @@ const BookForm = ({book, allRatings, onSave, onChange, saving, errors}) => {
         onChange={onChange}
         error={errors.description}/>
 
+      {showDeleteButton(book)}
+
       <input
         type="submit"
         disabled={saving}
@@ -57,6 +73,7 @@ BookForm.propTypes = {
   allRatings: PropTypes.array.isRequired,
   onSave: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
+  onDelete: PropTypes.func,
   saving: PropTypes.bool,
   errors: PropTypes.object
 };

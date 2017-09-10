@@ -17,6 +17,10 @@ export function updateBookSuccess(book) {
   return {type: types.UPDATE_BOOK_SUCCESS, book};
 }
 
+export function deleteBookSuccess(book) {
+  return {type: types.DELETE_BOOK_SUCCESS, book};
+}
+
 export function loadBooks() {
   return function(dispatch) {
     dispatch(beginAjaxCall());
@@ -37,6 +41,20 @@ export function saveBook(bookToSave) {
         bookToSave.id
           ? dispatch(updateBookSuccess(book))
           : dispatch(createBookSuccess(book));
+      })
+      .catch(error => {
+        dispatch(ajaxCallError());
+        throw(error);
+      });
+  };
+}
+
+export function deleteBook(bookToDelete) {
+  return function (dispatch, getState) {
+    dispatch(beginAjaxCall());
+    return BookApi.deleteBook(bookToDelete.id)
+      .then(book => {
+          dispatch(deleteBookSuccess(book));
       })
       .catch(error => {
         dispatch(ajaxCallError());
