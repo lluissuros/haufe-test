@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
 import {Link} from 'react-router';
+import EllipsedTextBox from '../common/EllipsedTextBox';
 
 const BookListRow = ({book}) => {
   return (
@@ -8,7 +9,7 @@ const BookListRow = ({book}) => {
       <td><Link to={'/book/' + book.id}>{book.title}</Link></td>
       <td>{book.author}</td>
       <td>{book.ratingId}</td>
-      <td>{book.description}</td>
+      <td><EllipsedTextBox text={book.description}/></td>
     </tr>
   );
 };
