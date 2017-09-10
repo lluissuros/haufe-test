@@ -7,7 +7,6 @@ class EllipsedTextBox extends Component {
 
     this.state = {
       numLines: 2,
-      readMore: true,
     };
 
     this.onReadClik = this.onReadClik.bind(this);
@@ -18,30 +17,24 @@ class EllipsedTextBox extends Component {
     const MAX_LINES_TO_SHOW = 1000;
 
     this.setState({
-      numLines: this.state.readMore
+      numLines: this.state.numLines !== MAX_LINES_TO_SHOW
         ? MAX_LINES_TO_SHOW
         : LINES_TO_SHOW_WHEN_TRUNCATE,
-      readMore: !this.state.readMore,
     });
   }
 
   render(){
     return (
-      <div>
+      <div onClick={this.onReadClik} style={{cursor:'pointer'}}>
         <TextTruncate
           line={this.state.numLines}
           truncateText="…"
           text={this.props.text}
         />
-        <div
-          onClick={this.onReadClik}>
-            { this.state.readMore ? 'more' : 'less' }
-        </div>
       </div>
     );
   }
 }
-
 
 EllipsedTextBox.propTypes = {
   text: PropTypes.string.isRequired,
