@@ -1,5 +1,7 @@
 # React Test exercise for Haufe
 
+This is a Front End for a basic book app that uses React, Redux, Redux-Thunk middleware for dealing with server requests, nd a variety of other helpful libraries.
+
 ## This is a Client that consumes a REST api provided by:
 https://github.com/lluissuros/haufe-express
 
