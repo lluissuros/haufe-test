@@ -25,7 +25,7 @@ class AboutPage extends React.Component {
             <p>Yes, absolutely!</p>
             <p>
               I've used this test as an opportunity to get to know better React + Redux ecosystem.
-              If I'm not selected, I'm better off anyway because I get knowledge
+              If I'm not selected for the job, It will have paid off anyway because I get knowledge
               and a nice starting point for future projects.
             </p>
             <p>
@@ -39,7 +39,7 @@ class AboutPage extends React.Component {
         <br/>
 
         <ul>
-            <li><h4>Did you develop this code all by yourself?</h4></li>
+            <li><h4>Did you develop ALL this code all by yourself?</h4></li>
             <p>Absolutely not! I'm standing on the shoulders of giants.</p>
             <p>
               What I did was to ask the React tech lead in my company about a nice course to
@@ -52,6 +52,10 @@ class AboutPage extends React.Component {
                forcing myself to understand all steps along the way. I still need further practice to integrate all the information,
                but I think my understanding has improved quite a lot.
             </p>
+            <p>
+              From there I started to play around, specially when I started connecting the client to my real back end instead of
+              the original mock.
+            </p>
         </ul>
 
         <br/>
@@ -59,9 +63,8 @@ class AboutPage extends React.Component {
 
         <ul>
             <li><h4>What about the express server side part?</h4></li>
-            <p>Hopefully I can work on it soon, in a separate repo. These next days I will be busy but I shouldn't be a
-            great deal. I followed the direction provided by the course to use a mockApi, which in any
-            case feels right to me (program against an interface, not an implementation)</p>
+            <p>I started following the course, which is using a mock Api. From there I created a back end with server, using some ideas
+            from other courses and articles, and adapting it to my needs.</p>
         </ul>
 
         <br/>
@@ -80,7 +83,10 @@ class AboutPage extends React.Component {
                 Webpack: I understand what it does high-level wise, but it's pretty magical to me at the moment.
               </li>
               <li>
-                No tests: To come in the future, hopefully.
+                Could be more responsive, more progressive.
+              </li>
+              <li>
+                NO TESTS YET: To come in the future, hopefully.
               </li>
             </ul>
         </ul>
