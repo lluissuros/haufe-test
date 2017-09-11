@@ -9,8 +9,7 @@ class AboutPage extends React.Component {
           <a href="https://github.com/lluissuros" className="btn btn-primary">my Github</a>
           <br/>
           <br/>
-          <p>This application uses React, Redux, React Router and a variety of other helpful
-            libraries.</p>
+          <p>This is a Front End for a basic book app that uses React, Redux, Redux-Thunk middleware for dealing with server requests, nd a variety of other helpful libraries.</p>
           <p>I will be happy to discuss it with you if you want to, and in any case, if you want any further improvements just let me know and I will do my best!</p>
 
         <br/>
