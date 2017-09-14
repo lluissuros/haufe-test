@@ -5,7 +5,7 @@ import * as bookActions from '../../actions/bookActions';
 import BookForm from './BookForm';
 import toastr from 'toastr';
 
-class ManageBookPage extends React.Component {
+export class ManageBookPage extends React.Component {
   constructor(props, context) {
     super(props, context);
 
@@ -35,8 +35,22 @@ class ManageBookPage extends React.Component {
     return this.setState({book: book});
   }
 
+  isBookFormValid() {
+    let formIsValid = true;
+    let errors = {};
+    if (this.state.book.title.length < 5){
+      errors.title = 'Title must be at least 5 characters';
+      formIsValid = false;
+    }
+    this.setState({ errors: errors });
+    return formIsValid;
+  }
+
   saveBook(event) {
     event.preventDefault();
+    if(!this.isBookFormValid()){
+      return;
+    }
     this.setState({ saving: true, succesMessage: 'Book Saved' });
     this.props.actions.saveBook(this.state.book)
       .then(() => this.redirect())
