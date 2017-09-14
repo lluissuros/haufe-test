@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux';
 import * as bookActions from '../../actions/bookActions';
 import BookForm from './BookForm';
 import toastr from 'toastr';
+import {ratingsFormattedForDropdown} from '../../selectors/selectors';
 
 export class ManageBookPage extends React.Component {
   constructor(props, context) {
@@ -116,16 +117,9 @@ function mapStateToProps(state, ownProps) {
     ? getBookById(state.books, bookId)
     : emptyBook;
 
-  const ratingsFormattedForDropdown = state.ratings.map((rating) => {
-    return {
-      value: rating.id,
-      text: rating.text,
-    };
-  });
-
   return {
     book: book,
-    ratings: ratingsFormattedForDropdown,
+    ratings: ratingsFormattedForDropdown(state.ratings),
   };
 }
 
