@@ -1,4 +1,5 @@
 import * as apiRoutes from './apiRoutes';
+import "isomorphic-fetch";
 
 class BookApi {
   static getAllBooks() {
