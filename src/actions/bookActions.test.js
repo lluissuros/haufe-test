@@ -48,6 +48,7 @@ describe('Async Actions', () => {
 
     store.dispatch(bookActions.loadBooks()).then(() => {
       const actions = store.getActions();
+      expect(actions.length).toBe(2);
       expect(actions[0].type).toEqual(actionTypes.BEGIN_AJAX_CALL);
       expect(actions[1].type).toEqual(actionTypes.LOAD_BOOKS_SUCCESS);
       done();
