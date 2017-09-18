@@ -4,8 +4,9 @@ import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 import * as bookActions from '../../actions/bookActions';
 import BookList from './BookList';
+import isEmpty from 'lodash.isempty';
 
-class BooksPage extends React.Component {
+export class BooksPage extends React.Component {
   constructor(props, context) {
     super(props, context);
 
@@ -26,8 +27,9 @@ class BooksPage extends React.Component {
                value="Add Book"
                className="btn btn-primary"
                onClick={this.redirectToAddBookPage}/>
-
-        <BookList books={books}/>
+        {isEmpty(books)
+          ? null
+          : <BookList books={books}/>}
       </div>
     );
   }
